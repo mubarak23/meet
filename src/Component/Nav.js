@@ -5,7 +5,7 @@ class Nav extends Component {
     render() {
         return (
             <div>
-             <nav class="navbar navbar-expand-lg navbar-primary bg-light">
+             <nav className="navbar navbar-expand-lg navbar-default bg-light">
             <Link className="navbar-brand" to="/home">Meeting</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@ class Nav extends Component {
                 <li className="nav-item">
                     <Link className="nav-link" to="/signup">Signup</Link>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                     <Link className="nav-link" to="/login">Login</Link>
                 </li>
                 </ul>

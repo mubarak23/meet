@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
            <div className="container">
-               <div className="jumbotron">
+               <div className="jumbotron col-10 offset-1">
                <h1 className="display-4">Meet</h1>
                 <p className="lead">Platform that allow you organize all your 
                 shecdule meeting</p>
