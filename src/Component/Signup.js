@@ -22,33 +22,29 @@ class Signup extends Component {
     }
     onSignupSubmit(event){
         event.preventDefault();
-        const options = {
-            headers: {   
+        const options = {   
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*' 
-            
-                    }
-          };
-        axios({
-            method: 'post',
-            url: 'http://127.0.0.1:8000',
-            data: {
+          }
+          fetch("http://127.0.0.1:8000/api/v1/user", {
+            method: 'POST',
+            //headers: {'Content-Type':'application/json'},
+            options,
+            body:{
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             },
-            options
-        }).then(
-            (res) => {
-                console.log(res)
-            }
-        ).catch(
-            (error) => {
-                console.log(error);
-            }
-        )
-    }
+            //headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+          })
+            .then(response => {
+              console.log(response)
+            })
+            .catch((error) => console.log(error));
+        }
+      
+    
     render() {
         return (
             

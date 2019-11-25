@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Login extends Component {
     constructor(props){
@@ -16,17 +17,20 @@ class Login extends Component {
             [this.event.name]: event.target.value
         })
     }
+
     onLoginSubmit(event){
-        event.preventdefault();
-        
+        event.preventDefault();
     }
+    
+    
     render() {
         return (
            <div className="container">
                <div className="col-md-4 col-md-offset-4">
                     <div className="row">
                         <h2>Login</h2>
-                        <form className="group_control" submit={onLoginSubmit}>
+                        </div>
+                        <form className="form-group" onSubmit={this.onLoginSubmit}>
                             <div>
                                 <label>Email</label>
                                 <input type="text"
@@ -40,7 +44,6 @@ class Login extends Component {
                                 <input type="password" className="form-control" name="password"/>
                             </div>
                         </form>  
-                    </div>
                </div>
                login page Here
            </div> 
