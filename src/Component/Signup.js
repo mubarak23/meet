@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import { pseudoRandomBytes } from 'crypto';
 import { useHistory } from "react-router-dom"
+import axios from 'axios';
 
 class Signup extends Component {
     constructor(props){
@@ -21,25 +22,43 @@ class Signup extends Component {
     }
     onSignupSubmit(event){
         event.preventDefault();
-        const body = JSON.stringify({'name': this.state.name, 'email': this.state.email, 'password': this.state.password});
-        fetch('http://127.0.0.1:8000/api/v1/user', {
-            method: 'POST',
-            header: new Headers(),
-            body
+        const options = {
+            headers: {   
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*' 
+            
+                    }
+          };
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000',
+            data: {
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password
+            },
+            options
         }).then(
-            (data) => console.log(data),
-            //useHistory.push('/login')
+            (res) => {
+                console.log(res)
+            }
         ).catch(
-            (error)=> console.log(error)
+            (error) => {
+                console.log(error);
+            }
         )
     }
     render() {
         return (
-            <div>
+            
                 <div className="container">
                     <br></br>
-                    <div className="col-4 col-sm-4 offset-1">
-                        <form className="form-group" name="name" onSubmit={this.onSignupSubmit}>
+                    <div className="col-md-4 col-md-offset-4">
+                    <div className="row">
+                        <h2>Meet / Registration form</h2>
+                    </div>
+                        <form className="form-group"  onSubmit={this.onSignupSubmit}>
                             <div>
                             <label>Name</label>
                             <input type="text" value={this.state.name}
@@ -64,7 +83,6 @@ class Signup extends Component {
                         </form>
                     </div>
                 </div>
-            </div>
         );
     }
 }
