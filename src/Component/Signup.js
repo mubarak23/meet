@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import { pseudoRandomBytes } from 'crypto';
-import { useHistory } from "react-router-dom"
+import { Redirect  } from "react-router";
 import axios from 'axios';
 
 class Signup extends Component {
@@ -13,6 +13,9 @@ class Signup extends Component {
         }
         this.onFieldChange = this.onFieldChange.bind(this);
         this.onSignupSubmit = this.onSignupSubmit.bind(this);
+        //let history = useHistory()
+        // eslint-disable-next-line no-unused-expressions
+        <Redirect to="/login" />
     }
    
     onFieldChange(event){
@@ -22,29 +25,23 @@ class Signup extends Component {
     }
     onSignupSubmit(event){
         event.preventDefault();
-        const options = {   
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*' 
-          }
-          fetch("http://127.0.0.1:8000/api/v1/user", {
-            method: 'POST',
-            //headers: {'Content-Type':'application/json'},
-            options,
-            body:{
+          axios.post('http://127.0.0.1:8000/api/v1/user', {
+              //method: 'POST',
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
-            },
-            //headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
-          })
-            .then(response => {
-              console.log(response)
-            })
-            .catch((error) => console.log(error));
+          }).then(
+              (response) => {
+                // eslint-disable-next-line no-restricted-globals
+               //this.history.push('/login');
+               // eslint-disable-next-line no-unused-expressions
+               this.props.history.push('/login');
+               console.log(response);
+              }
+          ).catch(
+              (error) => console.log(error)
+          )
         }
-      
-    
     render() {
         return (
             
