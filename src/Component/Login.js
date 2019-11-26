@@ -14,12 +14,21 @@ class Login extends Component {
     }    
     onFieldChange(event){
         this.setState({
-            [this.event.name]: event.target.value
-        })
+            [event.target.name]: event.target.value
+        });
     }
 
     onLoginSubmit(event){
         event.preventDefault();
+        axios.post('http://127.0.0.1:8000/api/v1/user/signin', {
+            email: this.state.email,
+            password: this.state.password
+        }).then(
+            (response) => {
+                console.log(response);
+                this.props.history.push('/meeting');
+            }
+        )
     }
     
     
@@ -34,6 +43,7 @@ class Login extends Component {
                             <div>
                                 <label>Email</label>
                                 <input type="text"
+                                onChange={this.onFieldChange}
                                  className="form-control"
                                   name="email" />
                             </div>
@@ -41,7 +51,14 @@ class Login extends Component {
                                 <label>
                                     Password
                                 </label>
-                                <input type="password" className="form-control" name="password"/>
+                                <input type="password"
+                                 className="form-control"
+                                 onChange={this.onFieldChange}
+                                 name="password"/>
+                            </div>
+                            <div>
+                                <br></br>
+                                <input type="submit" className="btn btn-primary" value="Login" />
                             </div>
                         </form>  
                </div>
