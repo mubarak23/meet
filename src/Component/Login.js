@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import  auth  from '../Config/Auth/Auth';
 
 class Login extends Component {
     constructor(props){
@@ -17,7 +18,14 @@ class Login extends Component {
             [event.target.name]: event.target.value
         });
     }
+    onTestLogin(event){
+        event.preventDefault();
+         // eslint-disable-next-line no-labels
+         
+        auth.login({email: this.state.email,
+                  password: this.state.password});
 
+    }
     onLoginSubmit(event){
         event.preventDefault();
         axios.post('http://127.0.0.1:8000/api/v1/user/signin', {
@@ -39,7 +47,7 @@ class Login extends Component {
                     <div className="row">
                         <h2>Login</h2>
                         </div>
-                        <form className="form-group" onSubmit={this.onLoginSubmit}>
+                        <form className="form-group" onSubmit={this.onTestLogin}>
                             <div>
                                 <label>Email</label>
                                 <input type="text"
