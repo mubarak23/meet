@@ -70,7 +70,7 @@ class Login extends Component {
                             </div>
                         </form>  
                </div>
-               login page Here
+               
            </div> 
         );
     }
