@@ -29,8 +29,8 @@ class Signup extends Component {
           }
           fetch("http://127.0.0.1:8000/api/v1/user", {
             method: 'POST',
-            //headers: {'Content-Type':'application/json'},
-            options,
+            headers: {'Content-Type':'application/json'},
+            mode: "no-cors",
             body:{
                 name: this.state.name,
                 email: this.state.email,
