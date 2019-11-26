@@ -47,7 +47,7 @@ class Login extends Component {
                     <div className="row">
                         <h2>Login</h2>
                         </div>
-                        <form className="form-group" onSubmit={this.onTestLogin}>
+                        <form className="form-group" onSubmit={this.onLoginSubmit}>
                             <div>
                                 <label>Email</label>
                                 <input type="text"
