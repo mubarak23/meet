@@ -24,3 +24,12 @@ export default class Auth {
     }
     
 } 
+
+export function isAuthenticated(){
+    const token = localStorage.getItem('token');
+    if(token){
+        return token;
+    } else {
+      return false;
+    }
+   }
