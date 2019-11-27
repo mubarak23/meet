@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 //import  auth  from '../Config/Auth/Auth';
 
 class Login extends Component {
@@ -22,18 +23,17 @@ class Login extends Component {
     
     onLoginSubmit(event){
         event.preventDefault();
+        console.log(this.state.email);
         axios.post('http://127.0.0.1:8000/api/v1/user/signin', {
             email: this.state.email,
             password: this.state.password
         }).then(
             (response) => {
-                if(!response.token){
-                    return this.setState({loginerror: response.message})
-                }
-                console.log(response);
+                const correct_res = JSON.stringify(response);
+                console.log(correct_res);
                 //push data to local storage
-                localStorage.setItem('token', response.token);
-                localStorage.setItem('expire_at', response.expires_in)
+                localStorage.setItem('token', correct_res.access_token);
+                localStorage.setItem('expire_at', correct_res.expires_in)
                 this.props.history.push('/meeting');
             }
         )
@@ -76,4 +76,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

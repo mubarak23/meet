@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { isTokenExpired } from '../Config/Auth/Auth'
+//import { isTokenExpired } from '../Config/Auth/Auth'
 
 class Meeting extends Component {
-    constructor(props){
-        super(props);
-    }
     
     render() {
         return (
