@@ -39,4 +39,14 @@ import decode from 'jwt-decode'
         return !(date.valueOf() >(new Date().valueOf() + (offsetSeconds * 1000)))
  }
 
+ export function isAuthenticated() {
+    // Checks if there is a saved token and it's still valid
+    const token = localStorage.getItem('token')
+    if (token) {
+      return token
+    } else {
+      return false
+    }
+  }
+
  

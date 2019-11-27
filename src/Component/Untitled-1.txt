@@ -1,0 +1,13 @@
+const body = JSON.stringify({'name': this.state.name, 'email': this.state.email, 'password': this.state.password});
+        fetch('http://127.0.0.1:8000/api/v1/user', {
+            method: 'POST',
+            headers: new Headers(),
+            //headers.append('Access-Control-Allow-Origin', 'http://localhost:3000'),
+            //headers.append('Access-Control-Allow-Credentials', 'true'),
+            body
+        }).then(
+            (data) => console.log(data),
+            //useHistory.push('/login')
+        ).catch(
+            (error)=> console.log(error)
+        )

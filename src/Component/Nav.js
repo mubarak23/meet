@@ -19,6 +19,15 @@ class Nav extends Component {
                 <li className="nav-item">
                     <Link className="nav-link" to="/login">Login</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/meeting">Meeting</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/creating_meeting">Create Meeting</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/active_meeting">Active Meeting</Link>
+                </li>
                 </ul>
                 </div>
                 </nav>
