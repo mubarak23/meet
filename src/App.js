@@ -6,6 +6,7 @@ import Login from './Component/Login'
 import Nav from './Component/Nav'
 import Meeting from './Component/Meeting'
 
+
 class App extends Component {
 
   render() {
@@ -16,7 +17,6 @@ class App extends Component {
         <Route path="/signup" exact component={Signup}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/meeting" exact component={Meeting}/>
-        
       </div>
     );
   }
