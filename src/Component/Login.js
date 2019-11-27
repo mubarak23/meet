@@ -34,6 +34,8 @@ class Login extends Component {
         }).then(
             (response) => {
                 console.log(response);
+                //push data to local storage
+                
                 this.props.history.push('/meeting');
             }
         )
