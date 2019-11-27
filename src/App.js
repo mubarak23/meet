@@ -4,6 +4,7 @@ import Home from './Component/Home';
 import Signup from './Component/Signup'
 import Login from './Component/Login'
 import Nav from './Component/Nav'
+import Meeting from './Component/Meeting'
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
         <Route path="/home" exact component={Home}/>
         <Route path="/signup" exact component={Signup}/>
         <Route path="/login" exact component={Login}/>
+        <Route path="/meeting" exact component={Meeting}/>
         
       </div>
     );
