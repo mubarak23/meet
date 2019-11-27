@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import  auth  from '../Config/Auth/Auth';
+//import  auth  from '../Config/Auth/Auth';
 
 class Login extends Component {
     constructor(props){
         super(props);
         this.state= {
             email: '',
-            password: ''
+            password: '',
+            loginerror: ''
         }
         this.onFieldChange = this.onFieldChange.bind(this);
         this.onLoginSubmit = this.onLoginSubmit.bind(this);
@@ -18,14 +19,7 @@ class Login extends Component {
             [event.target.name]: event.target.value
         });
     }
-    onTestLogin(event){
-        event.preventDefault();
-         // eslint-disable-next-line no-labels
-         
-        auth.login({email: this.state.email,
-                  password: this.state.password});
-
-    }
+    
     onLoginSubmit(event){
         event.preventDefault();
         axios.post('http://127.0.0.1:8000/api/v1/user/signin', {
@@ -33,9 +27,13 @@ class Login extends Component {
             password: this.state.password
         }).then(
             (response) => {
+                if(!response.token){
+                    return this.setState({loginerror: response.message})
+                }
                 console.log(response);
                 //push data to local storage
-                
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('expire_at', response.expires_in)
                 this.props.history.push('/meeting');
             }
         )

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Router,  Route } from 'react-router-dom';
-import { }
 import Home from './Component/Home';
 import Signup from './Component/Signup'
 import Login from './Component/Login'

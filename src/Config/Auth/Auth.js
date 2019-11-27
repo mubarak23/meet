@@ -1,10 +1,7 @@
 //import { EventEmitter } from 'events';
 import axios from 'axios'
-export default class Auth {
-    // eslint-disable-next-line no-useless-constructor
-    
-
-    login = (email, password) =>{
+import decode from 'jwt-decode'
+   export function  login (email, password) {
         axios.post('/', {
             email,
             password
@@ -21,15 +18,25 @@ export default class Auth {
                 return error
             }
         )
-    }
-    
-} 
+    }    
 
-export function isAuthenticated(){
-    const token = localStorage.getItem('token');
-    if(token){
-        return token;
-    } else {
-      return false;
-    }
-   }
+ export function getTokenExpirationDate(token){
+            const decoded = decode(token);
+            if(!decoded.exp){
+                return null
+            }
+            const date = new Date(0);
+            date.setUTCSeconds(decoded.exp);
+            return date;
+ }
+
+ export function isTokenExpired(token){
+        const date = getTokenExpirationDate(token);
+        const offsetSeconds = 0;
+        if(date === null) {
+            return false
+        }
+        return !(date.valueOf() >(new Date().valueOf() + (offsetSeconds * 1000)))
+ }
+
+ 
