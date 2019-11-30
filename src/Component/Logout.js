@@ -10,7 +10,7 @@ class Logout extends Component {
   logout = () => {
     localStorage.removeItem("token");
 
-    this.props.history.psuh("/home");
+    this.props.history.push("/home");
   };
 
   render() {
