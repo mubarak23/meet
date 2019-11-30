@@ -7,7 +7,7 @@ import Login from "./Component/Login";
 import Nav from "./Component/Nav";
 import Meeting from "./Component/Meeting";
 import Logout from "./Component/Logout";
-import Create_Meeting from "./Component/CreateMeeting";
+import CreateMeeting from "./Component/CreateMeeting";
 import Active_Meeting from "./Component/Active.Meeting";
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
           path="/meeting"
           render={props => (isAuthenticated() ? <Meeting {...props} /> : null)}
         />
-        <Route path="/create_meeting" exact component={Create_Meeting} />
+        <Route path="/create_meeting" exact component={CreateMeeting} />
         <Route path="/active_meeting" exact component={Active_Meeting} />
       </div>
     );
