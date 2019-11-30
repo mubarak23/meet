@@ -8,27 +8,39 @@ class CreatMeeting extends Component {
       description: "",
       date: ""
     };
+    this.onCreateSubmit = this.onCreateSubmit.bind(this);
+    this.onFieldChange = this.onFieldChange.bind(this);
   }
-  onChangeField(event) {
+  onFieldChange(event) {
     event.preventDefault();
     this.setState({
       [event.target.name]: event.target.value
     });
   }
+  onCreateSubmit(event) {
+    event.preventDefault();
+    const body = {
+      title: this.state.title,
+      description: this.state.description,
+      date: this.state.date
+    };
+    console.log(body);
+  }
   render() {
-    console.log("Checking Test");
+    //console.log("Checking Test");
     return (
       <div className="container">
         <div className="col-10 offset-2">
           <h3 className="lead">Create Meeting</h3>
-          <form className="form-group">
+          <form className="form-group" onSubmit={this.onCreateSubmit}>
             <div>
               <label htmlFor="Title">Title</label>
               <input
                 type="text"
                 name="title"
+                className="form-control"
                 required
-                onChange={this.onChangeField}
+                onChange={this.onFieldChange}
                 placeholder="Meeting Title"
               />
             </div>
@@ -36,9 +48,10 @@ class CreatMeeting extends Component {
               <label htmlFor="description">Description</label>
               <input
                 type="text"
+                className="form-control"
                 name="description"
                 required
-                onChange={this.onChangeField}
+                onChange={this.onFieldChange}
                 placeholder="Meeing Description"
               />
             </div>
@@ -47,11 +60,13 @@ class CreatMeeting extends Component {
               <input
                 type="text"
                 name="date"
-                onChange={this.onChangeField}
+                className="form-control"
+                onChange={this.onFieldChange}
                 required
                 placeholder="Meeing Description"
               />
             </div>
+            <br></br>
             <input
               type="submit"
               className="btn btn-primary"
