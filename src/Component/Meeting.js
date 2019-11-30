@@ -8,7 +8,10 @@ class Meeting extends Component {
            <div className="container">
                <div className="row">
                    <div className="col-md-4 col-sm-4">
-                            
+                          List of Meeting Available  
+                   </div>
+                   <div>
+                       
                    </div>
                </div> 
            </div>
