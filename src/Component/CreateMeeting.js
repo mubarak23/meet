@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 
 class CreatMeeting extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      description: "",
+      date: ""
+    };
+  }
+  onChangeField(event) {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
   render() {
+    console.log("Checking Test");
     return (
       <div className="container">
         <div className="col-10 offset-2">
@@ -13,6 +28,7 @@ class CreatMeeting extends Component {
                 type="text"
                 name="title"
                 required
+                onChange={this.onChangeField}
                 placeholder="Meeting Title"
               />
             </div>
@@ -21,6 +37,17 @@ class CreatMeeting extends Component {
               <input
                 type="text"
                 name="description"
+                required
+                onChange={this.onChangeField}
+                placeholder="Meeing Description"
+              />
+            </div>
+            <div>
+              <label htmlFor="date">Date</label>
+              <input
+                type="text"
+                name="date"
+                onChange={this.onChangeField}
                 required
                 placeholder="Meeing Description"
               />

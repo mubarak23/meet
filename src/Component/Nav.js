@@ -22,11 +22,13 @@ class Nav extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">
-                  Signup
-                </Link>
-              </li>
+              {isAuthenticated() ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/Meeting">
+                    Meetings
+                  </Link>
+                </li>
+              ) : null}
               {isAuthenticated() ? (
                 <li className="nav-item">
                   <Link className="nav-link" to="/logout">
@@ -43,7 +45,7 @@ class Nav extends Component {
 
               {isAuthenticated() ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/creating_meeting">
+                  <Link className="nav-link" to="/create_meeting">
                     Create Meeting
                   </Link>
                 </li>
