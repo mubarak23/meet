@@ -5,7 +5,6 @@ import Signup from './Component/Signup';
 import Login from './Component/Login';
 import Nav from './Component/Nav';
 import Meeting from './Component/Meeting';
-import Logout from './Component/Logout';
 import CreateMeeting from './Component/CreateMeeting';
 import Active_Meeting from './Component/Active.Meeting';
 
