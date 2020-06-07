@@ -8,11 +8,11 @@ import Meeting from './Component/Meeting';
 import CreateMeeting from './Component/CreateMeeting';
 import Active_Meeting from './Component/Active.Meeting';
 import { reducer, initialState } from './reducer/userReducer';
-export const UserContext = createContext();
+export const userContext = createContext();
 
 const Routing = () => {
   const history = useHistory();
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(userContext);
   useEffect(() => {
     const user = 1;
     //JSON.parse(localStorage.getItem('user'));
@@ -38,14 +38,14 @@ const Routing = () => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
+    <userContext.Provider value={{ state, dispatch }}>
       <div className='body'>
         <BrowserRouter>
           <Nav />
           <Routing />
         </BrowserRouter>
       </div>
-    </UserContext.Provider>
+    </userContext.Provider>
   );
 }
 
