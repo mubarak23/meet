@@ -9,7 +9,40 @@ const Signup = () => {
   const [email, SetEmail] = useState('');
   const [password, SetPassword] = useState('');
 
-  const signupdata = () => {};
+  const signupdata = () => {
+    fetch('/signup', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.error) {
+          return (
+            <div className='toast'>
+              <div className='toast-body'>{data.error}</div>
+            </div>
+          );
+        } else {
+          history.push('/login');
+          return (
+            <div className='toast'>
+              <div className='toast-body'>{data.message}</div>
+            </div>
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className='container'>
       <br></br>
@@ -24,7 +57,7 @@ const Signup = () => {
               type='text'
               value={name}
               onChange={(e) => SetName(e.target.value)}
-              name='name'
+              placeholder='fullname'
               className='form-control'
             />
             <label>email</label>
@@ -32,23 +65,31 @@ const Signup = () => {
               type='text'
               value={email}
               onChange={(e) => SetEmail(e.target.value)}
-              name='email'
+              placeholder='email address'
               className='form-control'
             />
             <label>Password</label>
             <input
               type='password'
               value={password}
-              name='password'
+              placeholder='password'
               onChange={(e) => SetPassword(e.target.value)}
               className='form-control'
             />
           </div>
           <br></br>
           <div>
-            <input type='submit' className='btn btn-primary' value='Signup' />
+            <input
+              type='submit'
+              onClick={() => signupdata()}
+              className='btn btn-primary'
+              value='Signup'
+            />
           </div>
         </form>
+        <h5>
+          <Link to='/login'>Have An Already Signup Login</Link>
+        </h5>
       </div>
     </div>
   );
