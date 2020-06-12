@@ -1,7 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 //import { pseudoRandomBytes } from 'crypto';
-import { Redirect, Link, useHistory } from 'react-router';
-import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
 
 const Signup = () => {
   const history = useHistory();
