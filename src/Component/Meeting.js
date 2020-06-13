@@ -1,12 +1,12 @@
-import React, { Component, createContext, useEffect, useContext } from 'react';
-import { Router, Route, withRouter, useHistory } from 'react-router-dom';
-export const UserContext = createContext();
+import React, { createContext, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+export const userContext = createContext();
 
 const Meeting = () => {
   const history = useHistory();
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(userContext);
   useEffect(() => {
-    const user = JSON.parse(localStorage.get('user'));
+    const user = JSON.parse(localStorage.get('token'));
     if (user) {
       dispatch({ type: 'USER', payload: user });
     } else {
@@ -17,7 +17,7 @@ const Meeting = () => {
     <div className='container'>
       <div className='row'>
         <div className='col-md-4 col-sm-4'>List of Meeting Available</div>
-        <div></div>
+        <div>{state.token}</div>
       </div>
     </div>
   );
