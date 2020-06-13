@@ -8,7 +8,7 @@ const Signin = () => {
   const [email, SetEmail] = useState('');
   const [password, SetPassword] = useState('');
   const signindata = () => {
-    fetch('/http://127.0.0.1:8000/api/v1/user/signin', {
+    fetch('http://127.0.0.1:8000/api/v1/user/signin', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -19,23 +19,9 @@ const Signin = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log('data');
-        if (data.error) {
-          return (
-            <div className='toast'>
-              <div className='toast-body'>{data.error}</div>
-            </div>
-          );
-        } else {
-          history.push('/meeting');
-          localStorage.setItem('token', data.Token);
-          return (
-            <div className='toast'>
-              <div className='toast-body'>{data.message}</div>
-            </div>
-          );
-        }
+      .then((response) => {
+        console.log(response);
+        history.push('/meeting');
       })
       .catch((err) => {
         console.log(err);
@@ -47,39 +33,40 @@ const Signin = () => {
         <div className='row'>
           <h2>Login</h2>
         </div>
-        <form className='form-group'>
-          <div>
-            <label>Email</label>
-            <input
-              type='text'
-              value={email}
-              onChange={(e) => SetEmail(e.target.value)}
-              className='form-control'
-              placeholder='email address'
-            />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              type='password'
-              className='form-control'
-              value={password}
-              onChange={(e) => SetPassword(e.target.value)}
-              placeholder='password'
-            />
-          </div>
-          <div>
-            <br></br>
-            <input
-              type='submit'
-              onClick={() => signindata()}
-              className='btn btn-primary'
-              value='Login'
-            />
-          </div>
-        </form>
+
+        <div>
+          <label>Email</label>
+          <input
+            type='text'
+            value={email}
+            onChange={(e) => SetEmail(e.target.value)}
+            className='form-control'
+            placeholder='email address'
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type='password'
+            className='form-control'
+            value={password}
+            onChange={(e) => SetPassword(e.target.value)}
+            placeholder='password'
+          />
+        </div>
+        <div>
+          <br></br>
+          <button
+            type='submit'
+            onClick={() => signindata()}
+            className='btn btn-primary'
+          >
+            Login
+          </button>
+        </div>
+
         <h5>
-          <Link to='/signup'>Yet Signup</Link>
+          <Link to='/signup'>Yet to Signup</Link>
         </h5>
       </div>
     </div>
