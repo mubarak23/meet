@@ -2,9 +2,9 @@ import React, { createContext, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 export const userContext = createContext();
 
-const Meeting = () => {
-  const history = useHistory();
+const Meet = () => {
   const { state, dispatch } = useContext(userContext);
+  const history = useHistory();
   useEffect(() => {
     const user = JSON.parse(localStorage.get('token'));
     if (user) {
@@ -23,4 +23,4 @@ const Meeting = () => {
   );
 };
 
-export default Meeting;
+export default Meet;
