@@ -11,17 +11,6 @@ import { reducer, initialState } from './reducer/userReducer';
 export const userContext = createContext();
 
 const Routing = () => {
-  const history = useHistory();
-  const { state, dispatch } = useContext(userContext);
-  useEffect(() => {
-    const user = 1;
-    //JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      dispatch({ type: 'USER', payload: user });
-    } else {
-      history('/signin');
-    }
-  }, []);
   return (
     <Switch>
       <Route path='/home' exact component={Home} />

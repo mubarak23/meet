@@ -8,23 +8,23 @@ const Nav = () => {
   const renderList = () => {
     if (state) {
       return [
-        <li className='nav-item'>
+        <li key='1' className='nav-item'>
           <Link className='nav-link' to='/Meeting'>
             Meetings
           </Link>
         </li>,
-        <li className='nav-item'>
+        <li key='2' className='nav-item'>
           <Link className='nav-link' to='/create_meeting'>
             Create Meeting
           </Link>
         </li>,
 
-        <li className='nav-item'>
+        <li key='3' className='nav-item'>
           <Link className='nav-link' to='/active_meeting'>
             Active Meeting
           </Link>
         </li>,
-        <li className='nav-item'>
+        <li key='4' className='nav-item'>
           <Link className='nav-link' to='/logout'>
             Logout
           </Link>
@@ -32,15 +32,20 @@ const Nav = () => {
       ];
     } else {
       return [
-        <li className='nav-item'>
+        <li key='5' className='nav-item'>
           <Link className='nav-link' to='/Meeting'>
             Meetings
           </Link>
         </li>,
 
-        <li className='nav-item'>
+        <li key='6' className='nav-item'>
           <Link className='nav-link' to='/login'>
             Login
+          </Link>
+        </li>,
+        <li key='7' className='nav-item'>
+          <Link className='nav-link' to='/signup'>
+            Signup
           </Link>
         </li>,
       ];

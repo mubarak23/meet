@@ -9,7 +9,7 @@ const Signup = () => {
   const [password, SetPassword] = useState('');
 
   const signupdata = () => {
-    fetch('/signup', {
+    fetch('http://127.0.0.1:8000/api/v1/user', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -21,19 +21,19 @@ const Signup = () => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.error) {
+      .then((response) => {
+        console.log(response.message);
+        if (response.error) {
           return (
             <div className='toast'>
-              <div className='toast-body'>{data.error}</div>
+              <div className='toast-body'>{response.error}</div>
             </div>
           );
         } else {
           history.push('/login');
           return (
             <div className='toast'>
-              <div className='toast-body'>{data.message}</div>
+              <div className='toast-body'>{response.message}</div>
             </div>
           );
         }

@@ -79,7 +79,7 @@ const Signin = () => {
           </div>
         </form>
         <h5>
-          <Link to='/login'>Yet Signup</Link>
+          <Link to='/signup'>Yet Signup</Link>
         </h5>
       </div>
     </div>
