@@ -6,6 +6,7 @@ const Signup = () => {
   const history = useHistory();
   const [name, SetName] = useState('');
   const [email, SetEmail] = useState('');
+  const [message, SetMessage] = useState('');
   const [password, SetPassword] = useState('');
 
   const signupdata = () => {
@@ -23,20 +24,7 @@ const Signup = () => {
       .then((res) => res.json())
       .then((response) => {
         console.log(response.message);
-        if (response.error) {
-          return (
-            <div className='toast'>
-              <div className='toast-body'>{response.error}</div>
-            </div>
-          );
-        } else {
-          history.push('/login');
-          return (
-            <div className='toast'>
-              <div className='toast-body'>{response.message}</div>
-            </div>
-          );
-        }
+        SetMessage(response.message);
       })
       .catch((err) => {
         console.log(err);
@@ -49,43 +37,46 @@ const Signup = () => {
         <div className='row'>
           <h2>Meet/ Registration form</h2>
         </div>
-        <form className='form-group'>
-          <div>
-            <label>Name</label>
-            <input
-              type='text'
-              value={name}
-              onChange={(e) => SetName(e.target.value)}
-              placeholder='fullname'
-              className='form-control'
-            />
-            <label>email</label>
-            <input
-              type='text'
-              value={email}
-              onChange={(e) => SetEmail(e.target.value)}
-              placeholder='email address'
-              className='form-control'
-            />
-            <label>Password</label>
-            <input
-              type='password'
-              value={password}
-              placeholder='password'
-              onChange={(e) => SetPassword(e.target.value)}
-              className='form-control'
-            />
-          </div>
-          <br></br>
-          <div>
-            <input
-              type='submit'
-              onClick={() => signupdata()}
-              className='btn btn-primary'
-              value='Signup'
-            />
-          </div>
-        </form>
+        <div className='alert alert-secondary' role='alert'>
+          {!message ? '' : message} <Link to='/login'>Login Here</Link>
+        </div>
+        <div>
+          <label>Name</label>
+          <input
+            type='text'
+            value={name}
+            onChange={(e) => SetName(e.target.value)}
+            placeholder='fullname'
+            className='form-control'
+          />
+          <label>email</label>
+          <input
+            type='text'
+            value={email}
+            onChange={(e) => SetEmail(e.target.value)}
+            placeholder='email address'
+            className='form-control'
+          />
+          <label>Password</label>
+          <input
+            type='password'
+            value={password}
+            placeholder='password'
+            onChange={(e) => SetPassword(e.target.value)}
+            className='form-control'
+          />
+        </div>
+        <br></br>
+        <div>
+          <button
+            type='submit'
+            onClick={() => signupdata()}
+            className='btn btn-primary'
+          >
+            Signup
+          </button>
+        </div>
+
         <h5>
           <Link to='/login'>Have An Already Signup Login</Link>
         </h5>
