@@ -4,9 +4,10 @@ import { userContext } from '../App';
 
 const Nav = () => {
   const { state, dispatch } = useContext(userContext);
-  const history = useHistory();
+  const token = JSON.parse(localStorage.getItem('token'));
+  //const history = useHistory();
   const renderList = () => {
-    if (state) {
+    if (token) {
       return [
         <li key='1' className='nav-item'>
           <Link className='nav-link' to='/Meeting'>

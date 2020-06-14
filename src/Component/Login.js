@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 //import  auth  from '../Config/Auth/Auth';
-import {userContext} from '../App';
+import { userContext } from '../App';
 const Signin = () => {
   const history = useHistory();
   const [email, SetEmail] = useState('');
@@ -29,8 +28,6 @@ const Signin = () => {
         } else {
           console.log(response.message);
         }
-        //localStorage.setItem('token', JSON.stringify(response));
-        //history.push('/meeting');
       })
       .catch((err) => {
         console.log(err);
