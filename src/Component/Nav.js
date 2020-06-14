@@ -5,9 +5,10 @@ import { userContext } from '../App';
 const Nav = () => {
   const { state, dispatch } = useContext(userContext);
   const token = JSON.parse(localStorage.getItem('token'));
-  //const history = useHistory();
+  const history = useHistory();
+
   const renderList = () => {
-    if (token) {
+    if (token || state) {
       return [
         <li key='1' className='nav-item'>
           <Link className='nav-link' to='/Meeting'>
@@ -25,7 +26,15 @@ const Nav = () => {
             Active Meeting
           </Link>
         </li>,
-        <li key='4' className='nav-item'>
+        <li
+          key='4'
+          onClick={() => {
+            localStorage.clear();
+            dispatch({ type: 'CLEAR' });
+            history.push('/login');
+          }}
+          className='nav-item'
+        >
           <Link className='nav-link' to='/logout'>
             Logout
           </Link>
