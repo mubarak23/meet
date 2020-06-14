@@ -20,9 +20,15 @@ const Signin = () => {
     })
       .then((res) => res.json())
       .then((response) => {
-        console.log(response);
-        localStorage.setItem('token', JSON.stringify(response));
-        history.push('/meeting');
+        //console.log(response);
+        if (response.Token) {
+          localStorage.setItem('token', JSON.stringify(response));
+          history.push('/meeting');
+        } else {
+          console.log(response.message);
+        }
+        //localStorage.setItem('token', JSON.stringify(response));
+        //history.push('/meeting');
       })
       .catch((err) => {
         console.log(err);

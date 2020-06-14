@@ -3,13 +3,15 @@ import { useHistory } from 'react-router-dom';
 export const userContext = createContext();
 
 const Meet = () => {
-  //const { state, dispatch } = useContext(userContext);
+  const { dispatch } = useContext(userContext);
   const history = useHistory();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('token'));
     console.log(user);
-    if (!user) {
+    if (user) {
+    } else {
       history.push('/login');
+      dispatch({ type: 'USER', payload: user });
     }
   }, []);
   return (
