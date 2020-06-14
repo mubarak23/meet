@@ -10,12 +10,34 @@ const CreatMeeting = () => {
   const { dispatch } = useContext(userContext);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('token'));
-    console.log(user);
+    console.log(user.Token);
     if (user) {
     } else {
       history.push('/login');
     }
   }, []);
+
+  const postMeeting = () => {
+    const user = JSON.parse(localStorage.getItem('token'));
+    fetch('http://127.0.0.1:8000/api/v1/meeting', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + user.Token,
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        date,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: 'MEETING', payload: data.meeting });
+        history.push('/meeting');
+      });
+  };
   return (
     <div className='container'>
       <div className='col-10 offset-2'>
@@ -52,11 +74,13 @@ const CreatMeeting = () => {
           />
         </div>
         <br></br>
-        <input
+        <button
           type='submit'
+          onClick={() => postMeeting()}
           className='btn btn-primary'
-          value='Creating Meeting'
-        />
+        >
+          Creating Meeting
+        </button>
       </div>
     </div>
   );
