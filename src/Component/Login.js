@@ -1,11 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 //import  auth  from '../Config/Auth/Auth';
-
+import {userContext} from '../App';
 const Signin = () => {
   const history = useHistory();
   const [email, SetEmail] = useState('');
+  const { dispatch } = useContext(userContext);
   const [password, SetPassword] = useState('');
   const signindata = () => {
     fetch('http://127.0.0.1:8000/api/v1/user/signin', {
@@ -23,6 +24,7 @@ const Signin = () => {
         //console.log(response);
         if (response.Token) {
           localStorage.setItem('token', JSON.stringify(response));
+          dispatch({ type: 'USER', payload: response.user });
           history.push('/meeting');
         } else {
           console.log(response.message);

@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-export const userContext = createContext();
-
+//export const userContext = createContext();
+import { userContext } from '../App';
 const Meet = () => {
   const { dispatch } = useContext(userContext);
   const history = useHistory();
